@@ -15,9 +15,14 @@ public class Kata4 {
     Histogram<String> histogram;
     HistogramDisplay histoDisplay;
             
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Kata4 kata4 = new Kata4();
-        kata4.execute();
+        try {
+            kata4.execute();
+        } catch (IOException ex) {
+            System.out.println("Error de entrada salida: " + ex.getMessage());
+            System.out.println(ex.getStackTrace().toString());
+        }
     }
     
     private void input() throws IOException {
