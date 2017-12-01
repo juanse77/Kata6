@@ -10,45 +10,48 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.ApplicationFrame;
 
-public final class HistogramDisplay extends ApplicationFrame {
-    private final Histogram<String> histogram;
-    
-    public HistogramDisplay(Histogram<String> histogram) {
+public final class HistogramDisplay<T> extends ApplicationFrame {
+
+    private final Histogram<T> histogram;
+    private final String nameEjeX;
+
+    public HistogramDisplay(Histogram<T> histogram, String nameEjeX) {
         super("HISTOGRAMA");
+        this.nameEjeX = nameEjeX;
         this.histogram = histogram;
         setContentPane(createPanel());
         pack();
     }
-    
+
     private JPanel createPanel() {
         ChartPanel panel = new ChartPanel(createChart(createDataset()));
-        panel.setPreferredSize(new Dimension(500,400));
+        panel.setPreferredSize(new Dimension(500, 400));
         return panel;
     }
-    
+
     private JFreeChart createChart(DefaultCategoryDataset dataset) {
-        JFreeChart jfc = 
+        JFreeChart jfc =
                 ChartFactory.createBarChart(
                 "JFreeChart",
-                "Dominios email",
+                nameEjeX,
                 "Nº email",
-                dataset, 
+                dataset,
                 PlotOrientation.VERTICAL,
                 false,
                 rootPaneCheckingEnabled,
                 rootPaneCheckingEnabled);
         return jfc;
     }
-    
+
     private DefaultCategoryDataset createDataset() {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        for (String key : histogram.keySet()) {
-            dataset.addValue(histogram.get(key),"",key);
+        for (T key : histogram.keySet()) {
+            dataset.addValue(histogram.get(key), "", (Comparable) key);
         }
         return dataset;
     }
-    
-    public void excute() {
+
+    public void execute() {
         setVisible(true);
-    }   
+    }
 }
