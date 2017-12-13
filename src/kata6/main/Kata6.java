@@ -24,6 +24,7 @@ public class Kata6 {
     Histogram<Character> letters;
     Histogram<String> domains;
     Histogram<Character> gender;
+    Histogram<Float> weight;
 
     public static void main(String[] args) {
         Kata6 kata4 = new Kata6();
@@ -70,12 +71,20 @@ public class Kata6 {
                 return item.getGender();
             }
         });
+
+        weight = builderPerson.build(new Attribute<Person, Float>() {
+            @Override
+            public Float get(Person item) {
+                return item.getWeight();
+            }
+        });
     }
 
     private void output() {
-        new HistogramDisplay(domains, "Dominios").execute();
-        new HistogramDisplay(letters, "Primer Caracter").execute();
-        new HistogramDisplay(gender, "Género").execute();
+        new HistogramDisplay(domains, "Dominios", "Distribución de emails").execute();
+        new HistogramDisplay(letters, "Primer Caracter", "Distribución de caracteres").execute();
+        new HistogramDisplay(gender, "Género", "Distribución de géneros").execute();
+        new HistogramDisplay(weight, "Pesos", "Distribución de pesos").execute();
     }
 
     private void execute() throws IOException, ClassNotFoundException, SQLException {
