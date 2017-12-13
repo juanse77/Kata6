@@ -15,12 +15,14 @@ public final class HistogramDisplay<T> extends ApplicationFrame {
     private final Histogram<T> histogram;
     private final String nameEjeX;
     private final String tituloChart;
+    private final String nameEjeY;
 
-    public HistogramDisplay(Histogram<T> histogram, String nameEjeX, String tituloChart) {
+    public HistogramDisplay(Histogram<T> histogram, String nameEjeX, String tituloChart, String nameEjeY) {
         super("HISTOGRAMA");
         this.nameEjeX = nameEjeX;
         this.histogram = histogram;
         this.tituloChart = tituloChart;
+        this.nameEjeY = nameEjeY;
         
         setContentPane(createPanel());
         pack();
@@ -34,10 +36,9 @@ public final class HistogramDisplay<T> extends ApplicationFrame {
 
     private JFreeChart createChart(DefaultCategoryDataset dataset) {
         JFreeChart jfc =
-                ChartFactory.createBarChart(
-                tituloChart,
+                ChartFactory.createBarChart(tituloChart,
                 nameEjeX,
-                "Nº email",
+                nameEjeY,
                 dataset,
                 PlotOrientation.VERTICAL,
                 false,

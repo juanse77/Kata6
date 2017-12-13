@@ -81,10 +81,10 @@ public class Kata6 {
     }
 
     private void output() {
-        new HistogramDisplay(domains, "Dominios", "Distribución de emails").execute();
-        new HistogramDisplay(letters, "Primer Caracter", "Distribución de caracteres").execute();
-        new HistogramDisplay(gender, "Género", "Distribución de géneros").execute();
-        new HistogramDisplay(weight, "Pesos", "Distribución de pesos").execute();
+        new HistogramDisplay(domains, "Dominios", "Distribución de emails", "nº emails").execute();
+        new HistogramDisplay(letters, "Primer Caracter", "Distribución de caracteres", "cantidad").execute();
+        new HistogramDisplay(gender, "Género", "Distribución de géneros", "nº de personas").execute();
+        new HistogramDisplay(weight, "Pesos", "Distribución de pesos", "nº de personas").execute();
     }
 
     private void execute() throws IOException, ClassNotFoundException, SQLException {
